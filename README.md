@@ -12,13 +12,4 @@ Legend:
 ==
 FlugBuchung - Projekt Folder
 
-Notes - Enthält alle Notizen von Besprechungen/Vorlesungen/Übungen
-
-Devs:
-==
-- Aiman
-- David
-- Shyam
-- Samer
-
 
