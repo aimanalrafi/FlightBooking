@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master-page}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+
+
+        /* The image used */
+        background-image: url("https://images.hdqwalls.com/wallpapers/home-world-plane-4k-cq.jpg");
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+
+<body>
+<th:block layout:fragment="content">
+    <div class="col-md-4 col-md-offset-4">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 10px">
+                <h1 style="color: darkblue">Add New Aircraft </h1>
+            </div>
+
+        </div>
+    </div>
+
+    <form action="/aircrafts" method="post" th:object="${aircraft}" style="align-content: center ; color: azure ; text-align: center ">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label class="col-form-label" for="manufacturer">Manufacturer</label>
+                    <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"
+                          class="badge badge-danger"></span>
+                    <input type="text" class="form-control" placeholder="" id="manufacturer"
+                           name="manufacturer" th:value="${aircraft.manufacturer}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label" for="model">Model</label>
+                    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+                          class="badge badge-danger"></span>
+                    <input type="text" class="form-control" placeholder="" id="model"
+                           name="model" th:value="${aircraft.model}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label" for="numberOfSeats">Number of seats</label>
+                    <span th:if="${#fields.hasErrors('numberOfSeats')}" th:errors="*{numberOfSeats}"
+                          class="badge badge-danger"></span>
+                    <input type="text" class="form-control" placeholder="" id="numberOfSeats"
+                           name="numberOfSeats" th:value="${aircraft.numberOfSeats}" required>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" style="float:none ">Save</button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </form>
+    </div>
+
+</th:block>
+</body>
+</html>

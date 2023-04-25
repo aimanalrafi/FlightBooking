@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master-page}">
+<meta charset="UTF-8">
+
+<title>Aircrafts</title>
+<style>
+
+    body,html {
+        height: 100%;
+        margin: 0;
+        background-image: url("https://p4.wallpaperbetter.com/wallpaper/632/978/370/airplane-sky-air-travel-airbus-wallpaper-preview.jpg");
+        height: 100%;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; /* Resize the background image to cover the entire container */
+    }
+    h1   {color: #fcfcff;}
+    p    {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        text-align: center;
+        color: red;}
+
+
+
+    th {
+        text-align: center;
+    }
+
+    #aircrafts {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #aircrafts td, #aircrafts th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #aircrafts tr:nth-child(even){background-color: #f2f2f2;}
+
+    #aircrafts tr:hover {background-color: #ddd;}
+
+    #aircrafts th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #3b7fb6;
+        color: white;
+    }
+
+</style>
+
+
+
+<body>
+<th:block layout:fragment="content">
+    <div class="row"  style="margin-bottom: 10px">
+        <div class="col-md-6">
+            <h1 style>Aircrafts List </h1>
+        </div>
+        <div class="col-md-6">
+            <a href="/aircraft_form"><button type="button" class="btn btn-outline-primary" style="float: center">Add Aircraft</button></a>
+        </div>
+    </div>
+    <table class="table table-hover" id="aircrafts">
+        <thead>
+        <tr class="table-active">
+            <th scope="col">ID</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Model</th>
+            <th scope="col">Number of seats</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody >
+        <div th:each="aircraft, iterStat:${aircrafts}">
+            <tr cstyle="background-color: #fdfdfd">
+                <th scope="row" th:text="${aircraft.aircraftId}"></th>
+                <td th:text="${aircraft.manufacturer}"></td>
+                <td th:text="${aircraft.model}"></td>
+                <td th:text="${aircraft.numberOfSeats}"></td>
+                <td ><a th:href="@{/aircraft/delete(aircraftId=${aircraft.aircraftId})}" ><button type="button" class="btn btn-outline-danger btn-sm"  onclick="alert('Are you sure you want to delete?')">Delete</button></a></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <div>
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Pages:</a>
+            </li>
+            <th:block th:each="i:${#numbers.sequence(1,aircrafts.totalPages)}">
+                <li th:class="${currentPage}==(${i-1}) ? 'page-item active' : 'page-item'">
+                    <a class="page-link" th:href="@{/aircrafts(pageNo=(${i-1}))}" th:text="${i}"></a>
+                </li>
+            </th:block>
+        </ul>
+
+        <div class="form-group">
+            <div class="col-sm">
+                <a href="/"><button type="button" class="btn btn-outline-primary" style="float: end">Home</button></a>
+            </div>
+        </div>
+
+    </div>
+
+</th:block>
+
+
+
+</body>
+</html>

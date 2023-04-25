@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master-page}">
+<meta charset="UTF-8">
+<title>Passengers</title>
+
+
+<style>
+
+    body,html {
+        height: 100%;
+        margin: 0;
+        background-image: url("https://p4.wallpaperbetter.com/wallpaper/632/978/370/airplane-sky-air-travel-airbus-wallpaper-preview.jpg");
+        height: 100%;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; /* Resize the background image to cover the entire container */
+    }
+    h1   {color: #fcfcff;}
+    p    {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        text-align: center;
+        color: red;}
+
+
+
+    th {
+        text-align: center;
+    }
+
+    #passengers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #passengers td, #passengers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #passengers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #passengers tr:hover {background-color: #ddd;}
+
+    #passengers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #3b7fb6;
+        color: white;
+    }
+
+</style>
+
+<body>
+<th:block layout:fragment="content">
+    <div class="col-md-4 col-md-offset-4">
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-12">
+            <h1 style="color: darkblue">Passengers List for flight <span th:text="${flight.flightNumber}"></span></h1>
+        </div>
+
+    </div>
+    <table class="table table-sm" id="passengers">
+        <thead>
+        <tr class="table-active">
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Passport Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <div th:each="passenger, iterStat:${passengers}">
+            <tr style="background-color: #fdfdfd">
+                <th scope="row" th:text="${passenger.passengerId}">Dark</th>
+                <td th:text="${passenger.firstName}"></td>
+                <td th:text="${passenger.lastName}"></td>
+                <td th:text="${passenger.phoneNumber}"></td>
+                <td th:text="${passenger.passportNumber}"></td>
+                <td th:text="${passenger.email}"></td>
+                <td th:text="${passenger.address}"></td>
+
+            </tr>
+        </div>
+        </tbody>
+    </table>
+        <div class="form-group">
+            <div class="col-sm">
+                <a href="/flights"><button type="button" class="btn btn-outline-primary" style="float: end">Back</button></a>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+</body>
+</html>
